@@ -12,6 +12,10 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'http://localhost/manufacturers/put',
+        'http://localhost/manufacturers/patch/3',
+        'http://localhost/manufacturers/patch/2',
+        'http://localhost/manufacturers/patch/1',
+        'http://localhost/auth'
     ];
 }
