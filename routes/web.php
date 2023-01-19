@@ -38,6 +38,6 @@ Route::get('/logout', [AuthorizationController::class, 'logout']);
 Route::prefix('data')->group(function () {
     Route::get('/get-top-car_models', [DataController::class, 'gettopcarmodels']);
     Route::get('/get-car_models/{carmodel}', [DataController::class, 'getcarmodels']);
-    Route::get('/get-relatedbooks/{carmodel}', [DataController::class, 'getrelatedcarmodels']);
+    Route::get('/get-related-car_models/{carmodel}', [DataController::class, 'getrelatedcarmodels']);
 });
    

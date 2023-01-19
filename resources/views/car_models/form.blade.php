@@ -6,7 +6,9 @@
 @endif
 <form
  method="post"
- action="{{ $car_models->exists ? '/car_models/patch/' . $car_models->id : '/car_models/put' }}">
+ action="{{ $car_models->exists ? '/car_models/patch/' . $car_models->id : '/car_models/put' }}"
+ enctype="multipart/form-data"
+ >
  @csrf
  <div class="mb-3">
  <label for="car_models-name" class="form-label">Nosaukums</label>
@@ -22,20 +24,23 @@
  @enderror
  </div>
  <div class="mb-3">
- <label for="car_models-manufacturers" class="form-label">Ražotājs</label>
- <input
- type="text"
- id="car_models-manufacturers"
- name="manufacturer_id"
- class="form-select @error('manufacturer_id') is-invalid @enderror"
- >
- <option value="">Norādiet ražotāju!</option>
-
-
- 
+ <label for="carmodel-manufacturer" class="form-label">Ražotājs</label>
+ <select
+    id="carmodel-manufacturer"
+    name="manufacturer_id"
+    class="form-select @error('manufacturer_id') is-invalid @enderror"
+    >
+    <option value="">Norādiet ražotāju!</option>
+    @foreach($manufacturers as $manufacturer)
+    <option
+    value="{{ $manufacturer->id }}"
+    @if ($manufacturer->id == old('manufacturers_id', $car_models->manufacturers->id ?? false)) selected @endif
+    >{{ $manufacturer->name }}</option>
+    @endforeach
  </select>
- @error('manufacturer_id')
- <p class="invalid-feedback">{{ $errors->first('manufacturer_id') }}</p>
+
+ @error('manufacturers_id')
+ <p class="invalid-feedback">{{ $errors->first('manufacturers_id') }}</p>
  @enderror
  </div>
  <div class="mb-3">
@@ -76,7 +81,6 @@
  <p class="invalid-feedback">{{ $errors->first('price') }}</p>
  @enderror
  </div>
- // image
  <div class="mb-3">
  <div class="form-check">
  <input
@@ -94,10 +98,7 @@
  <p class="invalid-feedback">{{ $errors->first('display') }}</p>
  @enderror
  </div>
- </div>
- <button type="submit" class="btn btn-primary">
- {{ $car_models->exists ? 'Atjaunot' : 'Pievienot' }}
- </button>
+ 
  <div class="mb-3">
  <label for="car_models-image" class="form-label">Attēls</label>
  @if ($car_models->image)
@@ -117,8 +118,9 @@
  <p class="invalid-feedback">{{ $errors->first('image') }}</p>
  @enderror
 </div>
+<button type="submit" class="btn btn-primary">
+ {{ $car_models->exists ? 'Atjaunot' : 'Pievienot' }}
+ </button>
+</form>
 
-</form
-    enctype="multipart/form-data"
->
 @endsection

@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CarModel;
 
 class DataController extends Controller
 {
     // Metode atgriež 3 publicētus carmodel ierakstus nejaušā secībā
     public function gettopcarmodels()
     {
-    $carmodels = CarModel::where('display', true)
+    $carmodel = CarModel::where('display', true)
     ->inRandomOrder()
     ->take(3)
     ->get();
-    return $carmodels;
+    return $carmodel;
     }
     // Metode atgriež izvēlēto carmodels ierakstu, ja tas ir publicēts
-    public function getcarmodels(CarModel $carmodels)
+    public function getcarmodels(CarModel $carmodel)
     {
     $selectedcarmodels = CarModel::where([
-    'id' => $carmodels->id,
+    'id' => $carmodel->id,
     'display' => true,
     ])
     ->firstOrFail();
@@ -27,14 +28,14 @@ class DataController extends Controller
     }
     // Metode atgriež 3 publicētus CarModel ierakstus nejaušā secībā,
     // izņemot izvēlēto CarModel ierakstu
-    public function getRelatedcarmodels(CarModel $carmodels)
+    public function getrelatedcarmodels(CarModel $carmodel)
     {
-    $carmodels = CarModel::where('display', true)
-    ->where('id', '<>', $carmodels->id)
+    $carmodel = CarModel::where('display', true)
+    ->where('id', '<>', $carmodel->id)
     ->inRandomOrder()
     ->take(3)
     ->get();
-    return $carmodels;
+    return $carmodel;
     }
 
 }

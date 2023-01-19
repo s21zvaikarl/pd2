@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CarModel;
+use App\Models\Manufacturer;
 
 class CarModelController extends Controller
 {
@@ -21,13 +22,13 @@ class CarModelController extends Controller
 
     public function create()
     {
-        //$car_models = ManufacturerController::orderBy('name', 'asc')->get();
+        $car_models = Manufacturer::orderBy('name', 'asc')->get();
         return view(
         'car_models.form',
         [
         'title' => 'Pievienot',
         'car_models' => new CarModel(),
-        //'manufacturers' => $manufacturers,
+        'manufacturers' => $car_models,
         ]
         );
     }

@@ -19,12 +19,10 @@
  <tr>
  <td>{{ $car_models->id }}</td>
  <td>{{ $car_models->name }}</td>
- <td>{{ $car_models->manufacturers->name }}</td>
+ <td>{{ $car_models->manufacturer ? $car_models->manufacturer->name : ''}}</td>
  <td>{{ $car_models->year }}</td>
  <td>&euro; {{ number_format($car_models->price, 2, '.') }}</td>
  <td>{!! $car_models->display ? '&#10004;&#65039;' : '&#10060;' !!}</td>
-27 / 55
-K. Immers, VeA, 2023-01
  <td>
  <a
  href="/car_models/update/{{ $car_models->id }}"

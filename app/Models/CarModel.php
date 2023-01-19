@@ -18,7 +18,7 @@ class CarModel extends Model
             'id' => intval($this->id),
             'name' => $this->name,
             'description' => $this->description,
-            'manufacturers' => $this->manufacturers->name,
+            //'manufacturers' => $this->manufacturers->name,
             'price' => number_format($this->price, 2),
             'year' => intval($this->year),
             'image' => asset('images/' . $this->image),

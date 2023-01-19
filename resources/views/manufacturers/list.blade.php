@@ -15,9 +15,21 @@
     <tr>
     <td>{{ $manufacturers->id }}</td>
     <td>{{ $manufacturers->name }}</td>
-    <td><a href="/manufacturers/update/{{ $manufacturers->id }}" class="btn btn-outline-primary btnsm">Labot</a> / <form action="/manufacturers/delete/{{ $manufacturers->id }}" method="post" class="deletionform d-inline">
- @csrf
- <button type="submit" class="btn btn-outline-danger btn-sm">Dzēst</button>
+    <td>
+        <a 
+            href="/manufacturers/update/{{ $manufacturers->id }}" 
+            class="btn btn-outline-primary btnsm">
+        Labot</a> / 
+        <form 
+            method="post"
+            action="/manufacturers/delete/{{ $manufacturers->id }}"  
+            class="deletionform d-inline"
+        >
+            @csrf
+            <button 
+                type="submit" 
+                class="btn btn-outline-danger btn-sm"
+            >Dzēst</button>
 </form>
 </td>
     </tr>
